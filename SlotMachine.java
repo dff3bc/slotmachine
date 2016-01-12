@@ -1,7 +1,7 @@
 //Copyright 2016, Dustin Evans, All rights reserved.
 
 
-//Some additional stuff here
+//TODO move these methods to another class and add graphics to this class
 package slotmachine;
 
 /**
