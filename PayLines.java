@@ -27,6 +27,8 @@ public class PayLines
     };
     
     private double[] winnings = new double[30];
+    private int[] winningLines = new int[30];
+    
     
     public PayLines()
     {
@@ -89,14 +91,22 @@ public class PayLines
         int index=0;
         int winindex=0;
         int paynum=0;
+        int currentPayLine=1;
         for(String[] paychartline:paychart)
         {
+            currentPayLine=1;
             for(String[] payline:paylinex)
             {
                 paynum=this.checkWin(paychartline, payline);
-                winnings[winindex]=Math.pow(1.5, index)*paynum;
-                System.out.println(Math.pow(1.5, index)+" "+index);
-                winindex++;
+                if(paynum!=0)
+                {
+                    winnings[winindex]=Math.pow(1.5, index)*paynum;
+                    System.out.println("Pay: "+Math.pow(1.5, index)*paynum+" Pay index: "+index + " Paynum: "+paynum);
+                    winindex++;
+                    System.out.print(currentPayLine+" ");
+                }
+                
+                currentPayLine++;
             }
             index++;
         }
@@ -122,7 +132,7 @@ public class PayLines
                 && !one[4].equals(two[4])
                 )
         {
-            return 3;
+            return 1;
         }
         //Only 4 symbols match
         else if(
@@ -133,7 +143,7 @@ public class PayLines
                 && !one[4].equals(two[4])
                 )
         {
-            return 4;
+            return 2;
         }
         //All 5 symbols match
         else if(
@@ -144,7 +154,7 @@ public class PayLines
                 && one[4].equals(two[4])
                 )
         {
-            return 5;
+            return 3;
         }
         return 0;
     }
