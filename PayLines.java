@@ -83,6 +83,10 @@ public class PayLines
         return false;
     }
     
+    
+    //TODO add methods that total up and return the winnings
+    //TODO add method that returns winning lines array
+    //TODO remove all print statements from code.
     public void calculateWins()
     {
         //pupolaute the paylinex with the current symbols
