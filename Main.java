@@ -5,62 +5,63 @@
  */
 package slotmachine;
 
-/**
- *
- * @author dustinevans
- */
-
+import java.awt.Graphics;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFrame;
 
-public class Main extends JFrame implements Runnable{
-    private final int WIDTH = 640;
-    private final int HEIGHT = 480;
-    Thread gameloop;
-
-    public static Main instance = null;
-
-    private Main(){
-        super();    //construct a new invisible JFrame
-        /* Define the frame properties */
-        this.setSize(this.WIDTH, this.HEIGHT);
-        this.setVisible(true);
-                        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+/**
+ *
+ * @author dustine
+ */
+public class Main extends JFrame{
+    
+    BufferedImage sprite1;
+    BufferedImage sprite2;
+    BufferedImage sprite3;
+    
+    public Main()
+    {
+        setSize(800,800);
+        setVisible(true);
+        setResizable(false);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setLocationRelativeTo(null);
+        init();
     }
-
-    public static Main getInstance(){
-        if (instance == null){
-            instance = new Main();
+    
+    public static void main(String[] args)
+    {
+        Main main=new Main();
+    }
+    
+    private void init()
+    {
+        BufferedImageLoader loader = new BufferedImageLoader();
+        BufferedImage spriteSheet=null;
+        try {
+            spriteSheet = loader.LoadImage("New_Piskel.png");
+        } catch (IOException ex) {
+            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return instance;
+        SpriteSheet ss = new SpriteSheet(spriteSheet);
+        
+        sprite1 = ss.GrabSprite(0, 0, 200, 200);
+        sprite2 = ss.GrabSprite(200, 0, 200, 200);
+        sprite3 = ss.GrabSprite(800, 0, 200, 200);
+        
+        
     }
-    /* End of singleton code */
-
-    public static void main(String[] args){
-        System.out.println("TutorialPath can run!");
-        Main.getInstance();
-        Main.getInstance().start();
+    
+    @Override
+    public void paint(Graphics g)
+    {
+        g.drawImage(sprite1, 100, 100, null);
+        g.drawImage(sprite2, 100, 300, null);
+        g.drawImage(sprite3, 100, 500, null);
+        repaint();
+        
     }
-
-
-        public void run() {
-        Thread current = Thread.currentThread();
-        while (current == gameloop) {
-            try {
-                Thread.sleep(5);
-            } catch (InterruptedException e) {
-                //do nothing
-                e.printStackTrace();
-            }
-            //updateGameLogic();
-            System.out.println("I'm running: " +                System.currentTimeMillis());
-            repaint();  //draw to the screen
-            
-    }
-}
-
-            public void start() {
-               gameloop = new Thread(this);
-               gameloop.start();
-        }
-
 }
