@@ -4,6 +4,9 @@
 //TODO move these methods to another class and add graphics to this class
 package slotmachine;
 
+import java.text.NumberFormat;
+import java.util.Locale;
+
 /**
  *
  * @author dustinevans
@@ -32,7 +35,6 @@ public class SlotMachine
             
             for(int x=0;x<5;x++)
             {
-                //System.out.print("| "+symReel[y][x]);
                 System.out.printf("|%-11s",symReel[y][x]);
             }
             System.out.println("|");
@@ -50,12 +52,15 @@ public class SlotMachine
                     break;
         }
         pl.calculateBonus();
+        
         if(pl.getBonus())
         {
             System.out.println("Bonus round!!");
         }
         
         pl.calculateWins();
+        
+        System.out.printf("You win %-3.2f\n",pl.getWinnings());
     }
     
 }
