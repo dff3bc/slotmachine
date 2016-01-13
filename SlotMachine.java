@@ -18,16 +18,14 @@ public class SlotMachine
 
     /**
      * @param args the command line arguments
-     */
+    
+    */
+    /*
     public static void main(String[] args)
     {
-        BufferedImage bi = new BufferedImage(10,10,BufferedImage.TYPE_INT_RGB);
-        AnimatedSprite as =new AnimatedSprite(10,200,200,1000,200,bi);
-        as.loadSpriteImage("New_Piskel.png");
-        as.draw();
         play();
     }
-    
+    */
     public static void play()
     {
         Reels reels = new Reels();
