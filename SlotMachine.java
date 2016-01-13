@@ -5,6 +5,10 @@
 package slotmachine;
 
 //Created Images are 100px X 100px ******************************************************
+
+import java.awt.image.BufferedImage;
+import javax.swing.JFrame;
+
 /**
  *
  * @author dustinevans
@@ -17,7 +21,10 @@ public class SlotMachine
      */
     public static void main(String[] args)
     {
-        
+        BufferedImage bi = new BufferedImage(10,10,BufferedImage.TYPE_INT_RGB);
+        AnimatedSprite as =new AnimatedSprite(10,200,200,1000,200,bi);
+        as.loadSpriteImage("New_Piskel.png");
+        as.draw();
         play();
     }
     
