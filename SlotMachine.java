@@ -4,9 +4,7 @@
 //TODO move these methods to another class and add graphics to this class
 package slotmachine;
 
-import java.text.NumberFormat;
-import java.util.Locale;
-
+//Created Images are 100px X 100px ******************************************************
 /**
  *
  * @author dustinevans
@@ -19,6 +17,7 @@ public class SlotMachine
      */
     public static void main(String[] args)
     {
+        
         play();
     }
     
