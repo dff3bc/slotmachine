@@ -28,6 +28,7 @@ public class PayLines
     
     private double[] winnings = new double[30];
     private int[] winningLines = new int[30];
+    private double bet = 1.00;
     
     
     public PayLines()
@@ -84,13 +85,13 @@ public class PayLines
     //TODO remove all print statements from code.
     public void calculateWins()
     {
-        //pupolaute the paylinex with the current symbols
+        //populate the paylinex with the current symbols
         this.createPaylines();
         //compare paychart to paylinex
         double index=0;
         int winindex=0;
         double paynum=0;
-        int currentPayLine=1;
+        int currentPayLine;
         for(String[] paychartline:paychart)
         {
             currentPayLine=1;
@@ -99,7 +100,7 @@ public class PayLines
                 paynum=this.checkWin(paychartline, payline);
                 if(paynum!=0)
                 {
-                    winnings[winindex]=Math.pow(1.50, index)*paynum;
+                    winnings[winindex]=Math.pow(1.50, index)*paynum*bet;
                     //System.out.println("Pay: "+Math.pow(1.50, index)*paynum+" Pay index: "+index + " Paynum: "+paynum+" Payline "+currentPayLine+" ");
                     winindex++;
                 }
@@ -179,6 +180,11 @@ public class PayLines
             finalwin+=d;
         }
         return finalwin;
+    }
+    
+    public double getBet()
+    {
+        return this.bet;
     }
     
     public void createPaylines()
