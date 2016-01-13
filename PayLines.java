@@ -75,12 +75,7 @@ public class PayLines
     
     public boolean getBonus()
     {
-        if(this.bonus==3)
-        {
-            return true;
-        }
-        
-        return false;
+        return this.bonus==3;
     }
     
     
@@ -92,9 +87,9 @@ public class PayLines
         //pupolaute the paylinex with the current symbols
         this.createPaylines();
         //compare paychart to paylinex
-        int index=0;
+        double index=0;
         int winindex=0;
-        int paynum=0;
+        double paynum=0;
         int currentPayLine=1;
         for(String[] paychartline:paychart)
         {
@@ -104,25 +99,26 @@ public class PayLines
                 paynum=this.checkWin(paychartline, payline);
                 if(paynum!=0)
                 {
-                    winnings[winindex]=Math.pow(1.5, index)*paynum;
-                    System.out.println("Pay: "+Math.pow(1.5, index)*paynum+" Pay index: "+index + " Paynum: "+paynum);
+                    winnings[winindex]=Math.pow(1.50, index)*paynum;
+                    //System.out.println("Pay: "+Math.pow(1.50, index)*paynum+" Pay index: "+index + " Paynum: "+paynum+" Payline "+currentPayLine+" ");
                     winindex++;
-                    System.out.print(currentPayLine+" ");
                 }
                 
                 currentPayLine++;
             }
             index++;
         }
+        /*
         System.out.print("[");
         for(double d:winnings)
         {
             if(d!=0.0)
             {
-                System.out.print(d+",");
+                System.out.print(d+" ");
             }
         }
         System.out.println("]");
+        */
     }
     
     public int checkWin(String[] one, String[] two)
@@ -172,6 +168,17 @@ public class PayLines
     public String[][] getPaylines()
     {
         return this.paylinex;
+    }
+    
+    public double getWinnings()
+    {
+        double finalwin = 0;
+        
+        for(double d:winnings)
+        {
+            finalwin+=d;
+        }
+        return finalwin;
     }
     
     public void createPaylines()
